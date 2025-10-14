@@ -20,6 +20,11 @@ app.use(
 app.use(cors());
 app.use(morgan(morganConfig));
 app.use("/", routes);
+app.get("/", (req, res) => {
+  return res.status(200).json({
+    message: "server online!"
+  })
+})
 
 mongoose.connection.once("open", () => {
   app.listen(PORT, () => {
