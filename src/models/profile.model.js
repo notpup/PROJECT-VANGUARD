@@ -13,11 +13,17 @@ const profileSchema = new mongoose.Schema({
   firstJoin: { type: Date, required: true },
   lastJoin: { type: Date, required: true },
 
-  equipped: {
-    nameplate: { type: String, required: false, default: "" },
-    banner: { type: String, required: false, default: "" },
-    title: { type: String, required: false, default: "" },
-  },
+  nameplate: { type: String, required: false, default: "" },
+  banner: { type: String, required: false, default: "" },
+  title: { type: String, required: false, default: "" },
+
+  inventory: [
+    {
+      i: { type: Number, required: true },
+      id: { type: String, required: true },
+      adquiredAt: { type: Date, required: true },
+    }
+  ],
 
   showcaseOrder: [
     {
