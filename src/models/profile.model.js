@@ -17,6 +17,7 @@ const profileSchema = new mongoose.Schema({
   banner: { type: String, required: false, default: "" },
   title: { type: String, required: false, default: "" },
   extraLoadouts: { type: Number, required: false, default: 0 },
+  currentLoadout: { type: Number, required: false, default: 1},
 
   inventory: [
     {
