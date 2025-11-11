@@ -16,12 +16,20 @@ const profileSchema = new mongoose.Schema({
   nameplate: { type: String, required: false, default: "" },
   banner: { type: String, required: false, default: "" },
   title: { type: String, required: false, default: "" },
+  extraLoadouts: { type: Number, required: false, default: 0 },
 
   inventory: [
     {
       i: { type: Number, required: true },
-      id: { type: String, required: true },
+      itemid: { type: String, required: true },
       adquiredAt: { type: Date, required: true },
+    }
+  ],
+  loadouts: [
+    {
+      Primary: { type: String, required: true },
+      Secondary: { type: String, required: true },
+      Taunts: [ { type: String, required: true } ]
     }
   ],
 
