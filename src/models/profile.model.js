@@ -28,9 +28,9 @@ const profileSchema = new mongoose.Schema({
   ],
   loadouts: [
     {
-      Primary: { type: String, required: true },
-      Secondary: { type: String, required: true },
-      Taunts: [ { type: String, required: true } ]
+      primary: { type: String, required: true },
+      secondary: { type: String, required: true },
+      taunts: [ { type: String, required: true } ]
     }
   ],
 
