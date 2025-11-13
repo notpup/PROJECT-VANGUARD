@@ -28,6 +28,7 @@ const profileSchema = new mongoose.Schema({
   ],
   loadouts: [
     {
+      name: { type: String, required: true },
       primary: { type: String, required: true },
       secondary: { type: String, required: true },
       taunts: [ { type: String, required: true } ]
