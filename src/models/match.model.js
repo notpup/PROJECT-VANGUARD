@@ -1,9 +1,10 @@
 import mongoose from "mongoose";
+import paginate from "mongoose-paginate-v2";
 
 const playerdataSchema = new mongoose.Schema({
   userId: { type: Number, required: true },
   playTime: { type: Number, required: true },
-  joinTime: { type: number, required: true },
+  joinTime: { type: Number, required: true },
   disconnected: { type: Boolean, required: true },
   stats: {
     kills: { type: Number, required: true },
@@ -15,80 +16,94 @@ const playerdataSchema = new mongoose.Schema({
     headshots: { type: Number, required: true },
     assists: { type: Number, required: true },
     streak: { type: Number, required: true },
-    running: { type: Number, required: true }
+    running: { type: Number, required: true },
   },
   mostKilledWithWeapon: {
     type: Map,
     of: Number,
-    default: {}
+    default: {},
   },
   mostKillsWithWeapon: {
     type: Map,
     of: Number,
-    default: {}
+    default: {},
   },
   kills: {
     type: Map,
-    of: new mongoose.Schema({
-      value: { type: Number, default: 0 },
-      streak: { type: Number, default: 0 }
-    }, { _id: false }),
-    default: {}
+    of: new mongoose.Schema(
+      {
+        value: { type: Number, default: 0 },
+        streak: { type: Number, default: 0 },
+      },
+      { _id: false }
+    ),
+    default: {},
   },
   deaths: {
     type: Map,
-    of: new mongoose.Schema({
-      value: { type: Number, default: 0 },
-      streak: { type: Number, default: 0 }
-    }, { _id: false }),
-    default: {}
+    of: new mongoose.Schema(
+      {
+        value: { type: Number, default: 0 },
+        streak: { type: Number, default: 0 },
+      },
+      { _id: false }
+    ),
+    default: {},
   },
   healing: {
     type: Map,
-    of: new mongoose.Schema({
-      value: { type: Number, default: 0 },
-      streak: { type: Number, default: 0 }
-    }, { _id: false }),
-    default: {}
+    of: new mongoose.Schema(
+      {
+        value: { type: Number, default: 0 },
+        streak: { type: Number, default: 0 },
+      },
+      { _id: false }
+    ),
+    default: {},
   },
   weaponAccuracy: {
     type: Map,
-    of: new mongoose.Schema({
-      shots: { type: Number, default: 0 },
-      hit: { type: Number, default: 0 },
-      limbs: {
-        type: Map,
-        of: Number,
-        default: {}
-      }
-    }, { _id: false }),
-    default: {}
-  }
+    of: new mongoose.Schema(
+      {
+        shots: { type: Number, default: 0 },
+        hit: { type: Number, default: 0 },
+        limbs: {
+          type: Map,
+          of: Number,
+          default: {},
+        },
+      },
+      { _id: false }
+    ),
+    default: {},
+  },
 });
 
 const matchSchema = new mongoose.Schema({
-  StartTime: { type: Date, required: true },
-  EndTime: { Type: Date, required: true },
-  MatchLength : { type: Number, required: true },
-  Map: { type: String, required: true },
-  Gamemode: { type: String, required: true },
-  ServerCountry: { type: String, required: true },
-  ServerState: { type: String, required: true },
-  GamemodeStats: {
-
-    Winner: { type: String, required: false  },
+  startTime: { type: Date, required: true },
+  endTime: { type: Date, required: true },
+  matchLength: { type: Number, required: true },
+  map: { type: String, required: true },
+  gamemode: { type: String, required: true },
+  ip: { type: String, required: true },
+  regionCountry: { type: String, required: true },
+  regionState: { type: String, required: true },
+  gamemodeStats: {
+    Winner: { type: String, required: false },
   },
   teams: {
     type: Map,
-    of: new mongoose.Schema({
+    of: {
       type: Map,
       of: playerdataSchema,
-      default: {}
-    }, { _id: false }),
-    default: {}
-  }
+      default: {},
+    },
+    default: {},
+  },
 });
 
+matchSchema.plugin(paginate);
 const Match = mongoose.model("matchs", matchSchema);
-
+const PlayerData = mongoose.model("playerdata", playerdataSchema);
 export default Match;
+export { PlayerData };
