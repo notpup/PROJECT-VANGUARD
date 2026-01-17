@@ -1,14 +1,18 @@
 import db from "../models/index.models.js";
 
 const Create = async (id, toUpdate = {}) => {
-  const now = Date.now()
+
+  delete toUpdate.userId;
+  delete toUpdate._id;
+  
   const filter = {
     userId: id,
   };
   const options = {
     $set: {
       ...toUpdate,
-    }
+    },
+    $setOnInsert: { userId: id, }
   }
   const userProfile = await db.Userdata.findOneAndUpdate(filter, options, {
     new: true,
