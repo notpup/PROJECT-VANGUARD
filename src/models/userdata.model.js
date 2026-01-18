@@ -28,6 +28,8 @@ const userdataSchema = new mongoose.Schema({
   HITMARKER: { type: Boolean, required: false, default: true },
   HITMARKER_TYPE: { type: String, required: false, default: "EXPANSIVE", enum: ["STATIC", "EXPANSIVE", "ROTATIVE"] },
   HITMARKER_SET: { type: Number, required: false, default: 1 },
+  KILLMARKER: { type: Boolean, required: false, default: true },
+  KILLMARK_TYPE: { type: String, required: false, default: "CIRCLE", enum: ["CIRCLE", "SKULL"] },
 
   HIGHLIGHT_HIT_COLOR: { type: String, required: false, default: "WHITE", enum: ["RED", "WHITE"] },
   HIGHLIGHT_FILL: { type: Boolean, required: false, default: true },
