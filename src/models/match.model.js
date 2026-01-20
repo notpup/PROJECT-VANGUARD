@@ -65,7 +65,7 @@ const playerdataSchema = new mongoose.Schema({
     type: Map,
     of: new mongoose.Schema(
       {
-        shots: { type: Number, default: 0 },
+        shoots: { type: Number, default: 0 },
         hit: { type: Number, default: 0 },
         limbs: {
           type: Map,
