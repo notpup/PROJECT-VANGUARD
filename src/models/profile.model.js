@@ -19,6 +19,18 @@ const profileSchema = new mongoose.Schema({
   extraLoadouts: { type: Number, required: false, default: 0 },
   currentLoadout: { type: Number, required: false, default: 1},
 
+  stats: {
+    damageDealt: { type: Number, required: false, default: 0 },
+    damageTaken: { type: Number, required: false, default: 0 },
+    healDealt: { type: Number, required: false, default: 0 },
+    healTaken: { type: Number, required: false, default: 0 },
+    wins: { type: Number, required: false, default: 0 },
+    losses: { type: Number, required: false, default: 0 },
+    kills: { type: Number, required: false, default: 0 },
+    deaths: { type: Number, required: false, default: 0 },
+    multikills: { type: Number, required: false, default: 0 },
+  },
+
   inventory: [
     {
       i: { type: Number, required: true },
