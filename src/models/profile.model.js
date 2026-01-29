@@ -20,6 +20,8 @@ const profileSchema = new mongoose.Schema({
   currentLoadout: { type: Number, required: false, default: 1},
 
   stats: {
+    games: { type: Number, required: false, default: 0 },
+    impact: { type: Number, required: false, default: 0 },
     damageDealt: { type: Number, required: false, default: 0 },
     damageTaken: { type: Number, required: false, default: 0 },
     healDealt: { type: Number, required: false, default: 0 },
