@@ -31,6 +31,18 @@ const Read = async (id) => {
   return profile;
 };
 
+const ReadRoblox = async (id) => {
+  const request = await fetch(`https://users.roblox.com/v1/users/${id}`, {
+    method: 'GET',
+  })
+  if (request.status !== 200) {
+    throw new Error("Roblox user not found");
+  }
+
+  const json = await request.json()
+  return json;
+};
+
 const Update = async (id, edit) => {
   // En la primera version se decidio tener rutas separadas pero en la segunda version decidimos juntar las rutas
   /*
@@ -63,6 +75,7 @@ const AddReview = async (toUserId, fromUserId, isPositive) => {};
 const ProfileService = {
   Create,
   Read,
+  ReadRoblox,
   Update,
   Delete,
 
