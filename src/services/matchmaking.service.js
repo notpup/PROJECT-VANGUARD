@@ -9,13 +9,11 @@ const UploadMatch = async (body) => {
   for (const [teamId, players] of Object.entries(body.teams)) {
     const newPlayers = new Map();
     for (const [playerId, data] of Object.entries(players)) {
-      console.log(data);
       newPlayers.set(playerId, new PlayerData(data));
     }
     newTeams.set(teamId, newPlayers);
   }
   body.teams = newTeams;
-  console.log(body.teams);
   const result = await db.Match.create(body);
   return result;
 };

@@ -53,7 +53,7 @@ const AddStats = async (id, stats) => {
 
   console.log("añadiendo las stats de:", id)
   console.log("estas son sus stats:", incStats);
-  return await Profile.updateOne(
+  return await db.Profile.updateOne(
     {
       userId: id,
     },
