@@ -85,7 +85,7 @@ const matchSchema = new mongoose.Schema({
   matchLength: { type: Number, required: true },
   map: { type: String, required: true },
   gamemode: { type: String, required: true },
-  ip: { type: String, required: true },
+  ip: { type: String, required: true, default: "" },
   regionCountry: { type: String, required: true },
   regionState: { type: String, required: true },
   gamemodeStats: {
