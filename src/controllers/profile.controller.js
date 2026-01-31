@@ -71,6 +71,29 @@ const ReadRoblox = async (req, res) => {
   }
 };
 
+const AddStats = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const stats = req.body;
+    const response = await ProfileService.AddStats(userId, stats);
+    return res.status(200).json({
+      success: true,
+      status: 200,
+      response,
+    });
+  } catch (err) {
+    console.log(err);
+    const statusCode = err.statusCode || 500;
+    return res.status(statusCode).json(
+      err.details || {
+        success: false,
+        status: statusCode,
+        message: err.message,
+      }
+    );
+  }
+};
+
 const Update = async (req, res) => {};
 
 const Delete = async (req, res) => {
@@ -123,11 +146,10 @@ const AddVisits = async (req, res) => {
   }
 };
 
-
-
 const ProfileController = {
   Create,
   Read,
+  AddStats,
   ReadRoblox,
   Update,
   Delete,

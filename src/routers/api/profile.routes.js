@@ -14,6 +14,7 @@ router.post("/:userId", ProfileController.Create)
 // Read
 router.get("/:userId", ProfileController.Read)
 router.get("/roblox/:userId", ProfileController.ReadRoblox)
+router.post("/add-stats/:userId", ProfileController.AddStats)
 
 // Usar para editar datos del usuario
 // Update

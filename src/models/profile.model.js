@@ -29,6 +29,7 @@ const profileSchema = new mongoose.Schema({
     wins: { type: Number, required: false, default: 0 },
     losses: { type: Number, required: false, default: 0 },
     kills: { type: Number, required: false, default: 0 },
+    killhs: { type: Number, required: false, default: 0 },
     deaths: { type: Number, required: false, default: 0 },
     multikills: { type: Number, required: false, default: 0 },
   },

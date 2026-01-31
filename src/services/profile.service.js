@@ -1,21 +1,21 @@
 import db from "../models/index.models.js";
 
 const Create = async (id, toUpdate = {}) => {
+  delete toUpdate.firstJoin;
+  delete toUpdate.lastJoin;
+  delete toUpdate.stats;
 
-  delete toUpdate.firstJoin
-  delete toUpdate.lastJoin
-  
-  const now = Date.now()
+  const now = Date.now();
   const filter = {
     userId: id,
   };
   const options = {
     $set: {
       ...toUpdate,
-      lastJoin: now
+      lastJoin: now,
     },
-    $setOnInsert: { firstJoin: now, }
-  }
+    $setOnInsert: { firstJoin: now },
+  };
   const userProfile = await db.Profile.findOneAndUpdate(filter, options, {
     new: true,
     upsert: true,
@@ -33,14 +33,31 @@ const Read = async (id) => {
 
 const ReadRoblox = async (id) => {
   const request = await fetch(`https://users.roblox.com/v1/users/${id}`, {
-    method: 'GET',
-  })
+    method: "GET",
+  });
   if (request.status !== 200) {
     throw new Error("Roblox user not found");
   }
 
-  const json = await request.json()
+  const json = await request.json();
   return json;
+};
+
+const AddStats = async (id, stats) => {
+  const incStats = {};
+  for (const [key, value] of Object.entries(stats)) {
+    if (typeof value === "number") {
+      incStats[`stats.${key}`] = value;
+    }
+  }
+  return await Profile.updateOne(
+    {
+      userId: id,
+    },
+    {
+      $inc: incStats,
+    },
+  );
 };
 
 const Update = async (id, edit) => {
@@ -65,7 +82,7 @@ const AddVisits = async (id, amount) => {
   const updatedProfile = await db.Profile.findOneAndUpdate(
     { userId: id },
     { $inc: { profileVisits: amount } },
-    { new: true }
+    { new: true },
   );
   return updatedProfile;
 };
@@ -76,6 +93,7 @@ const ProfileService = {
   Create,
   Read,
   ReadRoblox,
+  AddStats,
   Update,
   Delete,
 
