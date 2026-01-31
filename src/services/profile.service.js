@@ -50,6 +50,9 @@ const AddStats = async (id, stats) => {
       incStats[`stats.${key}`] = value;
     }
   }
+
+  console.log("añadiendo las stats de:", id)
+  console.log("estas son sus stats:", incStats);
   return await Profile.updateOne(
     {
       userId: id,
