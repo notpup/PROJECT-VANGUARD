@@ -32,6 +32,8 @@ const profileSchema = new mongoose.Schema({
     killhs: { type: Number, required: false, default: 0 },
     deaths: { type: Number, required: false, default: 0 },
     multikills: { type: Number, required: false, default: 0 },
+    hits: { type: Number, required: false, default: 0 },
+    shoots: { type: Number, required: false, default: 0 },
   },
 
   inventory: [
