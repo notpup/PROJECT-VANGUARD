@@ -15,6 +15,8 @@ const UploadMatch = async (body) => {
   }
   body.teams = newTeams;
   const result = await db.Match.create(body);
+  console.log("Match uploaded: " + result._id);
+  console.log(result);
   return result;
 };
 

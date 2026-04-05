@@ -35,7 +35,7 @@ const playerdataSchema = new mongoose.Schema({
         value: { type: Number, default: 0 },
         streak: { type: Number, default: 0 },
       },
-      { _id: false }
+      { _id: false },
     ),
     default: {},
   },
@@ -46,7 +46,7 @@ const playerdataSchema = new mongoose.Schema({
         value: { type: Number, default: 0 },
         streak: { type: Number, default: 0 },
       },
-      { _id: false }
+      { _id: false },
     ),
     default: {},
   },
@@ -57,14 +57,21 @@ const playerdataSchema = new mongoose.Schema({
         value: { type: Number, default: 0 },
         streak: { type: Number, default: 0 },
       },
-      { _id: false }
+      { _id: false },
     ),
     default: {},
   },
-  weaponAccuracy: {
+  weaponStats: {
     type: Map,
     of: new mongoose.Schema(
       {
+        kills: { type: Number, default: 0 },
+        damage: { type: Number, default: 0 },
+        deaths: { type: Number, default: 0 },
+        healing: { type: Number, default: 0 },
+        hs: { type: Number, default: 0 },
+        assist: { type: Number, default: 0 },
+        multikill: { type: Number, default: 0 },
         shoots: { type: Number, default: 0 },
         hit: { type: Number, default: 0 },
         limbs: {
@@ -73,7 +80,7 @@ const playerdataSchema = new mongoose.Schema({
           default: {},
         },
       },
-      { _id: false }
+      { _id: false },
     ),
     default: {},
   },
