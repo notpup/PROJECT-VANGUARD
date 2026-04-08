@@ -16,7 +16,7 @@ const userdataSchema = new mongoose.Schema({
 
   HITMARKER: { type: Boolean, required: false, default: true },
   HITMARKER_COLOR: { type: String, required: false, default: "WHITE", enum: ["ORANGE", "WHITE", "YELLOW", "RED"] },
-  HITMARKER_TYPE: { type: String, required: false, default: "EXPANSIVE", enum: ["STATIC", "EXPANSIVE", "ROTATIVE"] },
+  HITMARKER_TYPE: { type: String, required: false, default: "EXPAND", enum: ["STATIC", "EXPAND", "ROTATE"] },
   HITMARKER_SIZE: { type: Number, required: false, default: 1 },
   HITMARKER_SET: { type: Number, required: false, default: 1 },
 
