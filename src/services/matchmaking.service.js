@@ -51,7 +51,7 @@ const GetPlayerMatchs = async (userId, limit = 10, page = 0) => {
   const result = await db.Match.paginate(query, {
     page: page,
     limit: limit,
-    sort: { EndTime: 1 },
+    sort: { EndTime: -1 },
     lean: true,
   });
   return result;

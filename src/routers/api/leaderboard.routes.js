@@ -4,7 +4,7 @@ import db from "../../models/index.models.js";
 
 const router = express.Router();
 
-router.get("/", verifyAuthorization, async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
 
   } catch (err) {

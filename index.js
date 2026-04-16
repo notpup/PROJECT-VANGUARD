@@ -8,6 +8,7 @@ import morganConfig from "./src/config/logger.js";
 import { PORT, JWT_SECRET } from "./src/config/constants.js";
 
 import routes from "./src/routers/index.js";
+import verifyAuthorization from "./src/middlewares/authorization.js";
 
 import connectDatabase from "./src/config/mongoose.js";
 

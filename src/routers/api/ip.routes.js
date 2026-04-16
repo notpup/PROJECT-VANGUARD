@@ -3,7 +3,7 @@ import verifyAuthorization from "../../middlewares/authorization.js";
 
 const router = express.Router();
 
-router.get("/:ip", verifyAuthorization, async (req, res, next) => {
+router.get("/:ip", async (req, res, next) => {
   try {
     const { ip } = req.params;
     const fetchRequest = await fetch(`https://ipapi.co/${ip}/json`, {

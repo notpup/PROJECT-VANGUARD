@@ -16,7 +16,7 @@ const generateAlphanumericCode = () => {
   return code;
 };
 
-router.post("/export", verifyAuthorization, async (req, res, next) => {
+router.post("/export", async (req, res, next) => {
   try {
     const { data, userId } = req.body;
     const Data = await db.ExportedSetting.create({
@@ -41,7 +41,7 @@ router.post("/export", verifyAuthorization, async (req, res, next) => {
   }
 });
 
-router.get("/import/:code", verifyAuthorization, async (req, res, next) => {
+router.get("/import/:code", async (req, res, next) => {
   try {
     const { code } = req.params;
     const data = await db.ExportedSetting.findOneAndUpdate(
