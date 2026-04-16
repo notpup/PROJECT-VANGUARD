@@ -44,7 +44,7 @@ const userdataSchema = new mongoose.Schema({
 
   HIGHLIGHT_HITBOX: { type: Boolean, required: false, default: true },
   HIGHLIGHT_FILL_TYPE: { type: String, required: false, default: "BOTH", enum: ["OUTLINE", "FILL", "BOTH"] },
-  HIGHLIGHT_HIT_COLOR: { type: String, required: false, default: "WHITE", enum: ["RED", "WHITE"] },
+  HIGHLIGHT_HIT_COLOR: { type: String, required: false, default: "WHITE", enum: ["RED", "WHITE", "ORANGE"] },
   HIGHLIGHT_ALWAYS_BE_RED_ON_HEAD: { type: Boolean, required: false, default: true },
 
   SHOW_FPS: { type: Boolean, required: false, default: true },
@@ -52,14 +52,15 @@ const userdataSchema = new mongoose.Schema({
   
   SHOW_KILLFEED: { type: Boolean, required: false, default: true },
   SHOW_DAMAGEUI: { type: Boolean, required: false, default: true },
-  DAMAGEUI_TYPE: { type: String, required: false, default: "BOTH", enum: ["ROBLOX", "BORDERS"] },
+  DAMAGEUI_TYPE: { type: String, required: false, default: "BOTH", enum: ["GRADIENT", "BORDERS", "BOTH"] },
 
   SHOW_TEAMESP: { type: Boolean, required: false, default: true },
   SHOW_ENEMYESP: { type: Boolean, required: false, default: true },
   ESP_SIZE: { type: Number, required: false, default: 1 },
   OVERHEAD_TYPE: { type: String, required: false, default: "DETAILED", enum: ["CONDENSED", "DETAILED"] }
-});
+}, { _id: false });
 
 const Userdata = mongoose.model("userdatas", userdataSchema);
 
 export default Userdata;
+export { userdataSchema }
