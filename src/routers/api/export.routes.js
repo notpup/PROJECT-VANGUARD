@@ -16,7 +16,7 @@ const generateAlphanumericCode = () => {
   return code;
 };
 
-router.post("/export", async (req, res, next) => {
+router.post("/export", verifyAuthorization, async (req, res, next) => {
   try {
     const { data, userId } = req.body;
     const Data = await db.ExportedSetting.create({
@@ -28,7 +28,7 @@ router.post("/export", async (req, res, next) => {
     console.log("Se creo el siguiente documento:", Data);
     return res
       .status(200)
-      .json({ status: 200, response: "Exported successfully" });
+      .json({ status: 200, response: Data.code });
   } catch (err) {
     console.log(err);
     const statusCode = err.statusCode || 500;
@@ -41,7 +41,7 @@ router.post("/export", async (req, res, next) => {
   }
 });
 
-router.get("/import/:code", async (req, res, next) => {
+router.get("/import/:code", verifyAuthorization, async (req, res, next) => {
   try {
     const { code } = req.params;
     const data = await db.ExportedSetting.findOneAndUpdate(
@@ -49,11 +49,9 @@ router.get("/import/:code", async (req, res, next) => {
       { createdAt: new Date() },
       { new: true },
     );
-
     if (!data) {
-      return res.status(404).json({ error: "Código expirado o inválido" });
+      return res.status(404).json({ error: "Invalid/Expired code" });
     }
-
     return res.status(200).json({ status: 200, response: data });
   } catch (err) {
     console.log(err);
