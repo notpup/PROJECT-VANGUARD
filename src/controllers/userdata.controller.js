@@ -8,7 +8,6 @@ const Create = async (req, res) => {
     if (!userId) {
       throw new Error("'userId' param is required");
     }
-
     return res.status(200).json({
       success: true,
       status: 200,

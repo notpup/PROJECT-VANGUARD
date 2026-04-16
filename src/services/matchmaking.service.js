@@ -57,10 +57,6 @@ const GetPlayerMatchs = async (userId, limit = 10, page = 0) => {
     sort: { endTime: -1, _id: -1 },
     lean: true,
   });
-
-  console.log("Primer Match del result:", result.docs[0]?.endTime);
-  console.log("Último Match del result:", result.docs[result.docs.length - 1]?.endTime);
-
   return result;
 };
 

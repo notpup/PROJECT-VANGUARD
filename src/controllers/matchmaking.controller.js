@@ -35,10 +35,7 @@ const GetPlayerMatchs = async (req, res) => {
     if (!userId) {
       throw new Error("'userId' param is required");
     }
-
     const response = await MatchmakingService.GetPlayerMatchs(userId, limit, page);
-    console.log(response)
-    
     return res.status(200).json({
       success: true,
       status: 200,
