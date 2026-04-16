@@ -2,7 +2,10 @@ import db from "../models/index.models.js";
 import { PlayerData } from "../models/match.model.js";
 
 const UploadMatch = async (body) => {
-  body.endTime = new Date().toISOString();
+  body.endTime = new Date();
+  if (!body.startTime) {
+    body.startTime = new Date(Date.now() - (body.matchLength * 1000 || 0));
+  }
   //console.log(body)
 
   const newTeams = new Map();
@@ -49,11 +52,15 @@ const GetPlayerMatchs = async (userId, limit = 10, page = 0) => {
     },
   };
   const result = await db.Match.paginate(query, {
-    page: page,
-    limit: limit,
-    sort: { EndTime: -1 },
+    page: parseInt(page),
+    limit: parseInt(limit),
+    sort: { endTime: -1, _id: -1 },
     lean: true,
   });
+
+  console.log("Primer Match del result:", result.docs[0]?.endTime);
+  console.log("Último Match del result:", result.docs[result.docs.length - 1]?.endTime);
+
   return result;
 };
 

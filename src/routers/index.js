@@ -4,6 +4,6 @@ import verifyAuthorization from "../middlewares/authorization.js";
 
 const router = express.Router();
 
-router.use("/api", verifyAuthorization, apiRouter)
+router.use("/api", apiRouter)
 
 export default router
